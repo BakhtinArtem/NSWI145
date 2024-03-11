@@ -5,4 +5,7 @@ public interface IRobotRequest {
 
     @jakarta.jws.WebMethod
     Invoice processRequest(RobotRequest robotRequest);
+
+    @jakarta.jws.WebMethod
+    Invoice getInvoice(RobotRequest robotRequest);
 }

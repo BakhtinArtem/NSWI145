@@ -1,0 +1,73 @@
+<!-- ROBOTS WSDL-->
+<definitions
+        xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:tns="http://robots.example.org/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        targetNamespace="http://robots.example.org/"
+        name="RobotRequestImplService"
+>
+
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://robots.example.org/" schemaLocation="http://127.0.0.1:8000/ROBOTS?xsd=1"/>
+        </xsd:schema>
+    </types>
+
+    <message name="getInvoice">
+        <part name="parameters" element="tns:getInvoice"/>
+    </message>
+    <message name="getInvoiceResponse">
+        <part name="parameters" element="tns:getInvoiceResponse"/>
+    </message>
+    <message name="processRequest">
+        <part name="parameters" element="tns:processRequest"/>
+    </message>
+    <message name="processRequestResponse">
+        <part name="parameters" element="tns:processRequestResponse"/>
+    </message>
+
+    <portType name="IRobotRequest">
+        <operation name="getInvoice">
+            <input wsam:Action="tns:IRobotRequest/getInvoiceRequest" message="tns:getInvoice"/>
+            <output wsam:Action="tns:IRobotRequest/getInvoiceResponse" message="tns:getInvoiceResponse"/>
+        </operation>
+        <operation name="processRequest">
+            <input wsam:Action="tns:IRobotRequest/processRequestRequest" message="tns:processRequest"/>
+            <output wsam:Action="tns:IRobotRequest/processRequestResponse" message="tns:processRequestResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="RobotRequestImplPortBinding" type="tns:IRobotRequest">
+        <soap:binding
+                transport="http://schemas.xmlsoap.org/soap/http"
+                style="document"
+        />
+        <operation name="getInvoice">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="processRequest">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="RobotRequestImplService">
+        <port name="RobotRequestImplPort" binding="tns:RobotRequestImplPortBinding">
+            <soap:address location="http://127.0.0.1:8000/ROBOTS"/>
+        </port>
+    </service>
+
+</definitions>

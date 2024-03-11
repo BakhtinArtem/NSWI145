@@ -4,4 +4,7 @@ package org.example.license;
 public interface ILicenseGenerator {
     @jakarta.jws.WebMethod
     License generateLicense(LicenseRequest licenseRequest);
+
+    @jakarta.jws.WebMethod
+    License getLicenseBySerialNumber(long serialNumber);
 }
