@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:defenitions
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+     targetNamespace="http://license.example.com"
+>
+     <documentation></documentation>
+     <types></types>
+     <message>
+          <wsdl:message name="smthRequest">
+               <wsdl:part name="parameters" element="ns:helloword"></wsdl:part>
+          </wsdl:message>
+          <wsdl:message name="smthResponse">
+               <wsdl:part name="parameters" element="ns:hellowordResponse"></wsdl:part>
+          </wsdl:message>
+     </message>
+     <wsdl:portType name="WSDemoPortType" >
+          <wsdl:operation name="helloword" >
+               <wsdl:input message="ns:helloWorldRequest" />
+               <wsdl:output message="ns:helloWorldRespinse" />
+          </wsdl:operation>
+          <wsdl:operation name="sayGoodby" />
+     </wsdl:portType>
+     <!-- which protocols are used to send a message -->
+     <binding name="[name]" type="[portType-ref]">
+          <!-- protocol specific binding information -->
+     </binding>
+     <service>
+           
+     </service>
+</wsdl:defenitions>
