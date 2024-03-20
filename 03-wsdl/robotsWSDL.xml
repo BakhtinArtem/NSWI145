@@ -1,1 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<definitions
+     xmlns="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:ns="http://robots.example.org/"
+     xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+     xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     targetNamespace="http://robots.example.org/"
+>
+    <types>
+        <xsd:schema version="1.0" targetNamespace="http://robots.example.org/">
+            <xsd:element name="processRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="arg0" minOccurs="0" type="ns:request" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getInvoice">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="arg0" type="ns:request" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="processRequestResponse" type="ns:invoice" />
+            <xsd:element name="getInvoiceResponse" type="ns:invoice" /> 
+            <xsd:complexType name="invoice">
+                <xsd:sequence>
+                    <xsd:element name="serialNumber" type="xsd:long"/>
+                    <xsd:element name="generated" type="xsd:string"/>
+                    <xsd:element name="fromDate" type="xsd:string"/>
+                    <xsd:element name="toDate" type="xsd:string"/>
+                    <xsd:element name="licenseId" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="request">
+                <xsd:sequence>
+                        <xsd:element name="quantity" type="xsd:int"/>
+                        <xsd:element name="model" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    
+    <message name="processRequest">
+        <part name="parameters" element="ns:processRequest"></part>
+    </message>
+    <message name="processRequestResponse">
+        <part name="parameters" element="ns:processRequestResponse"></part>
+    </message>
+
+    <message name="getInvoice">
+        <part name="parameters" element="ns:getInvoice"></part>
+    </message>
+    <message name="getInvoiceResponse">
+        <part name="parameters" element="ns:getInvoiceResponse"></part>
+    </message>
+
+   <portType name="RobotsPort" >
+        <operation name="getInvoice" >
+            <input message="ns:getInvoice" />
+            <output message="ns:getInvoiceResponse" />
+        </operation>
+        <operation name="processRequest" >
+            <input message="ns:processRequest" />
+            <output message="ns:processRequestResponse" />
+        </operation>
+    </portType>
+
+    <binding name="RobotsServiceSoapBinding" type="ns:RobotsPort">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getInvoice">
+             <soap:operation soapAction=""/>
+             <input>
+                  <soap:body use="literal"/>
+             </input>
+             <output>
+                  <soap:body use="literal"/>
+             </output>
+        </operation>
+        <operation name="processRequest">
+             <soap:operation soapAction=""/>
+             <input>
+                  <soap:body use="literal"/>
+             </input>
+             <output>
+                  <soap:body use="literal"/>
+             </output>
+        </operation>
+   </binding>
+
+    <service name="RobotsService">
+        <port binding="ns:RobotsServiceSoapBinding">
+            <soap:address location="http://127.0.0.1:8000/ROBOTS"/>
+        </port>
+    </service>
+</definitions>
