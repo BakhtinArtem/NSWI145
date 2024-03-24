@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ShipmentServiceService" targetNamespace="http://example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://example.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://example.com/" schemaLocation="shipmentservice_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="processShipmentRequestResponse">
+    <wsdl:part name="parameters" element="tns:processShipmentRequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processShipmentRequest">
+    <wsdl:part name="parameters" element="tns:processShipmentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IShipmentService">
+    <wsdl:operation name="processShipmentRequest">
+      <wsdl:input name="processShipmentRequest" message="tns:processShipmentRequest">
+    </wsdl:input>
+      <wsdl:output name="processShipmentRequestResponse" message="tns:processShipmentRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ShipmentServiceServiceSoapBinding" type="tns:IShipmentService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processShipmentRequest">
+      <soap:operation soapAction="urn:ProcessShipmentRequest" style="document"/>
+      <wsdl:input name="processShipmentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="processShipmentRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShipmentServiceService">
+    <wsdl:port name="ShipmentServicePort" binding="tns:ShipmentServiceServiceSoapBinding">
+      <soap:address location="http://localhost:8060/cfx-server/services/ShipmentServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

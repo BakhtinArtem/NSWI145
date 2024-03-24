@@ -1,0 +1,34 @@
+<xs:schema xmlns:tns="http://example.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://example.com/" version="1.0">
+
+  <xs:element name="processShipmentRequest" type="tns:processShipmentRequest"/>
+
+  <xs:element name="processShipmentRequestResponse" type="tns:processShipmentRequestResponse"/>
+
+  <xs:complexType name="processShipmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:shipmentRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="customerId" type="xs:string"/>
+      <xs:element minOccurs="0" name="shipmentDetail" type="tns:shipmentDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="itemId" type="xs:string"/>
+      <xs:element name="quantity" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="processShipmentRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:shipmentDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
