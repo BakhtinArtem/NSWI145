@@ -7,20 +7,31 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
-    xmlns:tnsrobot="http://robots.example.org/">
+    xmlns:tnsrobot="http://robots.example.org/"
+    xmlns:tnsxsd="http://org/example/xsd">
 
     <wsdl:import namespace="http://license.example.org/" location="license.wsdl"/>
     <wsdl:import namespace="http://robots.example.org/" location="robots.wsdl"/>
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://org/example/xsd">
+            <xsd:element name="amount" type="xsd:integer"/>
+        </xsd:schema>
+    </wsdl:types>
 
     <wsdl:message name="InputMessage">
         <wsdl:part name="quantity" type="xsd:long"/>
         <wsdl:part name="model" type="xsd:string"/>
     </wsdl:message>
+
+    <wsdl:message name="OutputMessage">
+        <wsdl:part name="parameters" element="tnsxsd:amount"/>
+    </wsdl:message>
     
     <wsdl:portType name="OrderPortType">
         <wsdl:operation name="order">
             <wsdl:input message="tns:InputMessage" name="TestIn"/>
-            <wsdl:output message="tns:InputMessage" name="TestOut"/>
+            <wsdl:output message="tns:OutputMessage" name="TestOut"/>
         </wsdl:operation>    
     </wsdl:portType>
     

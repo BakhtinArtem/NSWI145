@@ -18,8 +18,11 @@
 
     <variables>
         <variable name="inputMessage" messageType="tnswsdl:InputMessage"/>
-        <variable name="tempRequest" element="tnsrobot:processRequest"/>
+        <variable name="outputMessage" messageType="tnswsdl:OutputMessage"/>
+        <variable name="tempRequest" messageType="tnsrobot:processRequest"/>
+        <variable name="tempRequestElement" element="tnsrobot:processRequest"/>
         <variable name="tempRequestResponse" messageType="tnsrobot:processRequestResponse"/>
+        <variable name="tempRequestResponseElement" element="tnsrobot:processRequestResponse"/>
     </variables>
 
     <sequence>
@@ -43,15 +46,19 @@
               </tnsrobot:processRequest>
             </literal>
           </from>
-          <to variable="tempRequest" />
+          <to variable="tempRequestElement" />
         </copy>
         <copy>
           <from variable="inputMessage" part="quantity"/>
-          <to>$tempRequest/quantity</to>
+          <to>$tempRequestElement//quantity</to>
         </copy>
         <copy>
           <from variable="inputMessage" part="model"/>
-          <to>$tempRequest/model</to>
+          <to>$tempRequestElement//model</to>
+        </copy>
+        <copy>
+          <from variable="tempRequestElement"/>
+          <to variable="tempRequest" part="parameters"/>
         </copy>
       </assign>
 
@@ -61,12 +68,23 @@
         operation="processRequest"
         createInstance="yes"
         inputVariable="tempRequest"
-        outputVariable="tempRequestResponse" />      
+        outputVariable="tempRequestResponse" />
+
+      <assign name="ParseMultiResponse">
+        <copy>
+          <from variable="tempRequestResponse" part="parameters"/>
+          <to variable="tempRequestResponseElement"/>
+        </copy>
+        <copy>
+          <from>$tempRequestResponseElement//amount</from>
+          <to variable="outputMessage" part="parameters"/>
+        </copy>
+      </assign>       
 
        <reply name="end"  
               partnerLink="orderPartnerLink"
               portType="tnswsdl:OrderPortType" 
               operation="order"
-              variable="inputMessage"/>
+              variable="outputMessage"/>
    </sequence>
 </process>
