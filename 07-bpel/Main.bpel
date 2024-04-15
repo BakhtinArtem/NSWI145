@@ -19,7 +19,7 @@
 
     <variables>
         <variable name="tempRequest" messageType="tnsrobot:processRequest"/>
-        <variable name="tempRequestResponse" messageType="tnsrobot:processRequest"/>
+        <variable name="tempRequestResponse" messageType="tnsrobot:processRequestResponse"/>
     </variables>
 
     <sequence>

@@ -3,7 +3,8 @@
   <!-- test soap message -->
   <SOAP-ENV:Body>
     <ns1:hello xmlns:ns1="http://org/example/wsdl">
-        <TestPart xmlns="">HELLOOOOOO</TestPart>
+        <quantity xmlns="">Random Car</quantity>
+        <model xmlns="">x1</model>
     </ns1:hello>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
