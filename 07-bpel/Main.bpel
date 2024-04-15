@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<process name="LicenseRobotProcess" 
+    targetNamespace="http://org/example/bpel" 
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:tns="http://org/example/bpel"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tnswsdl="http://org/example/wsdl"
+    xmlns:tnsrobot="http://robots.example.org/">
+
+    <import location="Main.wsdl" namespace="http://org/example/wsdl" importType="http://schemas.xmlsoap.org/wsdl/" />
+
+    <partnerLinks>
+      <partnerLink name="orderPartnerLink" partnerLinkType="tnswsdl:OrderLinkType" myRole="OrderRole" />
+      <partnerLink name="OrderProcessClientPartnerLink" partnerLinkType="tnswsdl:OrderLinkProcessType" 
+        myRole="OrderProcessClientRole" 
+        partnerRole="OrderProcessRole"/>
+    </partnerLinks>
+
+    <variables>
+        <variable name="tempRequest" messageType="tnsrobot:processRequest"/>
+        <variable name="tempRequestResponse" messageType="tnsrobot:processRequest"/>
+    </variables>
+
+    <sequence>
+      <receive
+          name="start"
+          partnerLink="orderPartnerLink"
+          portType="tnswsdl:OrderPortType"
+          operation="order"
+          variable="tempRequest"
+          createInstance="yes"/>
+
+      <invoke
+        name="InvokeOrder"
+        partnerLink="OrderProcessClientPartnerLink"
+        operation="processRequest"
+        inputVariable="tempRequest"
+        outputVariable="tempRequestResponse" />      
+
+       <reply name="end"  
+              partnerLink="orderPartnerLink"
+              portType="tnswsdl:OrderPortType" 
+              operation="order"
+              variable="tempRequestResponse"/>
+   </sequence>
+</process>
