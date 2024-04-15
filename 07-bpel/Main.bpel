@@ -49,11 +49,11 @@
           <to variable="tempRequestElement" />
         </copy>
         <copy>
-          <from variable="inputMessage" part="quantity"/>
+          <from>$inputMessage//quantity</from>
           <to>$tempRequestElement//quantity</to>
         </copy>
         <copy>
-          <from variable="inputMessage" part="model"/>
+          <from>$inputMessage//model</from>
           <to>$tempRequestElement//model</to>
         </copy>
         <copy>

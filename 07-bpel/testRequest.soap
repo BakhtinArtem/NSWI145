@@ -3,8 +3,10 @@
   <!-- test soap message -->
   <SOAP-ENV:Body>
     <ns1:order xmlns:ns1="http://org/example/wsdl">
-        <quantity xmlns="">4</quantity>
-        <model xmlns="">x1</model>
+    	<input>
+    		<quantity xmlns="">4</quantity>
+        	<model xmlns="">x1</model>
+    	</input>
     </ns1:hello>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
