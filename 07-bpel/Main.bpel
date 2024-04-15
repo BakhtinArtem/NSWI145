@@ -12,13 +12,13 @@
 
     <partnerLinks>
       <partnerLink name="orderPartnerLink" partnerLinkType="tnswsdl:OrderLinkType" myRole="OrderRole" />
-      <partnerLink name="OrderProcessClientPartnerLink" partnerLinkType="tnswsdl:OrderLinkProcessType" 
-        myRole="OrderProcessClientRole" 
+      <partnerLink name="orderProcessPartnerLink" partnerLinkType="tnswsdl:OrderLinkProcessType" myRole="OrderProcessClientRole" 
         partnerRole="OrderProcessRole"/>
     </partnerLinks>
 
     <variables>
-        <variable name="tempRequest" messageType="tnsrobot:processRequest"/>
+        <variable name="inputMessage" messageType="tnswsdl:InputMessage"/>
+        <variable name="tempRequest" element="tnsrobot:processRequest"/>
         <variable name="tempRequestResponse" messageType="tnsrobot:processRequestResponse"/>
     </variables>
 
@@ -28,13 +28,38 @@
           partnerLink="orderPartnerLink"
           portType="tnswsdl:OrderPortType"
           operation="order"
-          variable="tempRequest"
+          variable="inputMessage"
           createInstance="yes"/>
+
+      <assign name="initTempRequest">
+        <copy>
+          <from>
+            <literal>
+              <tnsrobot:processRequest>
+                <arg0 xmlns="">
+                  <quantity xmlns=""></quantity>
+                  <model xmlns=""></model>
+                </arg0>
+              </tnsrobot:processRequest>
+            </literal>
+          </from>
+          <to variable="tempRequest" />
+        </copy>
+        <copy>
+          <from variable="inputMessage" part="quantity"/>
+          <to>$tempRequest/quantity</to>
+        </copy>
+        <copy>
+          <from variable="inputMessage" part="model"/>
+          <to>$tempRequest/model</to>
+        </copy>
+      </assign>
 
       <invoke
         name="InvokeOrder"
-        partnerLink="OrderProcessClientPartnerLink"
+        partnerLink="orderProcessPartnerLink"
         operation="processRequest"
+        createInstance="yes"
         inputVariable="tempRequest"
         outputVariable="tempRequestResponse" />      
 
@@ -42,6 +67,6 @@
               partnerLink="orderPartnerLink"
               portType="tnswsdl:OrderPortType" 
               operation="order"
-              variable="tempRequestResponse"/>
+              variable="inputMessage"/>
    </sequence>
 </process>

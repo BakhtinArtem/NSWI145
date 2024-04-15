@@ -92,7 +92,7 @@
    </binding>
 
     <service name="RobotsService">
-        <port binding="ns:RobotsServiceSoapBinding">
+        <port name="RobotsPort" binding="ns:RobotsServiceSoapBinding">
             <soap:address location="http://127.0.0.1:8001/ROBOTS"/>
         </port>
     </service>	

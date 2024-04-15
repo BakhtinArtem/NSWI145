@@ -7,10 +7,10 @@
 		<provide partnerLink="orderPartnerLink">
 			<service name="wsdl:MainService" port="OrderPort"/>
 		</provide>
-		<provide partnerLink="orderLinkProcessType">
-			<service name="tnsrobot:RobotsService" port="RobotsServiceSoapBinding" />
-	    </provide>
-	    <provide partnerLink="orderLinkProcessType">
+		<invoke partnerLink="orderProcessPartnerLink">
+			<service name="tnsrobot:RobotsService" port="RobotsPort" />
+	    </invoke>
+	    <provide partnerLink="orderProcessPartnerLink">
 	    	<service name="wsdl:MainService" port="OrderPort" />
 	    </provide>
 	</process>
