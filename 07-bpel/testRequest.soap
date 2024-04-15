@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
-  <!-- test soap message -->
   <SOAP-ENV:Body>
     <ns1:order xmlns:ns1="http://org/example/wsdl">
-    	<input>
-    		<quantity xmlns="">4</quantity>
-        	<model xmlns="">x1</model>
-    	</input>
-    </ns1:hello>
+    	<!-- <parameters xmlns="">
+    		<input xmlns="http://org/example/xsd">
+	    		<quantity xmlns="http://org/example/xsd">4</quantity>
+	        	<model xmlns="http://org/example/xsd">x1</model>
+    		</input>
+    	</parameters> -->
+    	<quantity xmlns="">4</quantity>
+    	<model xmlns="">x1</model>
+    </ns1:order>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

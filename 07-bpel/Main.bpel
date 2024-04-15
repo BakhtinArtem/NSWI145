@@ -6,7 +6,8 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:tnswsdl="http://org/example/wsdl"
-    xmlns:tnsrobot="http://robots.example.org/">
+    xmlns:tnsrobot="http://robots.example.org/"
+    xmlns:tnsxsd="http://org/example/xsd">
 
     <import location="Main.wsdl" namespace="http://org/example/wsdl" importType="http://schemas.xmlsoap.org/wsdl/" />
 
@@ -18,6 +19,7 @@
 
     <variables>
         <variable name="inputMessage" messageType="tnswsdl:InputMessage"/>
+        <variable name="outputMessageElement" element="tnswsdl:OutputMessage"/>
         <variable name="outputMessage" messageType="tnswsdl:OutputMessage"/>
         <variable name="tempRequest" messageType="tnsrobot:processRequest"/>
         <variable name="tempRequestElement" element="tnsrobot:processRequest"/>
@@ -39,21 +41,21 @@
           <from>
             <literal>
               <tnsrobot:processRequest>
-                <arg0 xmlns="">
+                <parameters xmlns="">
                   <quantity xmlns=""></quantity>
                   <model xmlns=""></model>
-                </arg0>
+                </parameters>
               </tnsrobot:processRequest>
             </literal>
           </from>
           <to variable="tempRequestElement" />
         </copy>
         <copy>
-          <from>$inputMessage//quantity</from>
+          <from variable="inputMessage" part="quantity"/>
           <to>$tempRequestElement//quantity</to>
         </copy>
         <copy>
-          <from>$inputMessage//model</from>
+          <from variable="inputMessage" part="model"/>
           <to>$tempRequestElement//model</to>
         </copy>
         <copy>
@@ -70,14 +72,24 @@
         inputVariable="tempRequest"
         outputVariable="tempRequestResponse" />
 
-      <assign name="ParseMultiResponse">
+      <assign>
+        <!-- <copy>
+          <from>
+            <literal>
+              <tnswsdl:OutputMessage>
+                <amount xmlns="http://org/example/xsd"></amount>
+              </tnswsdl:OutputMessage>
+            </literal>
+          </from>
+          <to variable="outputMessageElement" />
+        </copy> -->
         <copy>
           <from variable="tempRequestResponse" part="parameters"/>
           <to variable="tempRequestResponseElement"/>
         </copy>
         <copy>
           <from>$tempRequestResponseElement//amount</from>
-          <to variable="outputMessage" part="parameters"/>
+          <to variable="outputMessage" part="amount"/>
         </copy>
       </assign>       
 
