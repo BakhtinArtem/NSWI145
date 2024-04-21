@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: HTTP-based service
+  description:
+    HTTP-based service simulating additional of damage details to a system 
+  version: 1.0.0
+servers:
+  - url: http://localhost:8060/httpService/rest
+paths:
+  /penalty/{detailId}:
+    put:
+      summary: Update a Damage Detail
+      parameters:
+        - in: header
+          name: Host
+          required: true
+          schema: 
+            type: string
+        - in: path
+          name: detailId
+          description: ID of the detail to create
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DamageDetail'
+      responses:
+        '202':
+          description: Accepted
+        '406':
+          description: Not Acceptable
+    delete:
+      summary: Delete a Damage Detail
+      parameters:
+        - in: header
+          name: Host
+          required: true
+          schema: 
+            type: string
+        - name: detailId
+          in: path
+          description: ID of the detail to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+        '406':
+          description: Not Acceptable
+  /penalty:
+    get:
+      summary: Get all Damage Details
+      parameters:
+        - in: header
+          name: Host
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DamageDetail'
+    post:
+      summary: Filter Damage Details
+      parameters:
+        - in: header
+          name: Host
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        description: Filter criteria
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DamageDetail'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DamageDetail'
+components:
+  schemas:
+    DamageDetail:
+      type: object
+      properties:
+        desc:
+          type: string
+        type:
+          type: string
+          enum:
+            - Physical
+            - Moisture
+            - Temperature
+            - Corrosion
+        date:
+          type: string
