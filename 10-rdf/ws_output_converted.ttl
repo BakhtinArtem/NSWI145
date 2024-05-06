@@ -1,0 +1,15 @@
+@prefix ex: <http://example.com/damage#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+ex:010124 a ex:DamageDetail ;
+    dcterms:date "01.01.24"^^xsd:date ;
+    dcterms:description "Fell down from big height"@en ;
+    ex:type ex:Physical .
+
+ex:030324 a ex:DamageDetail ;
+    dcterms:date "03.03.24"^^xsd:date ;
+    dcterms:description "High temperature in the container"@en ;
+    ex:type ex:Temperature .

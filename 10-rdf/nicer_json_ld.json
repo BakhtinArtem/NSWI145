@@ -1,0 +1,46 @@
+{
+    "@context": {
+      "ex": "http://example.com/damage#",
+      "dc": "http://purl.org/dc/terms/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "DamageDetail": "ex:DamageDetail",
+      "date": "dc:date",
+      "description": "dc:description",
+      "type": "ex:type",
+      "Physical": "ex:Physical",
+      "Temperature": "ex:Temperature"
+    },
+    "@graph": [
+      {
+        "@id": "ex:010124",
+        "@type": "DamageDetail",
+        "date": {
+          "@value": "01.01.24",
+          "@type": "xsd:date"
+        },
+        "description": {
+          "@value": "Fell down from big height",
+          "@language": "en"
+        },
+        "type": {
+          "@id": "ex:Physical"
+        }
+      },
+      {
+        "@id": "ex:030324",
+        "@type": "DamageDetail",
+        "date": {
+          "@value": "03.03.24",
+          "@type": "xsd:date"
+        },
+        "description": {
+          "@value": "High temperature in the container",
+          "@language": "en"
+        },
+        "type": {
+          "@id": "ex:Temperature"
+        }
+      }
+    ]
+  }
+  

@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.com/> .
+
+ex:LicenseRequest a rdfs:Class ;
+    rdfs:label "License Request"@en ;
+    rdfs:comment "Request for a new electronical license"@en .
+
+ex:RobotRequest a rdfs:Class ;
+    rdfs:label "Robot Request"@en ;
+    rdfs:comment "Request for a brand new robots"@en .
+
+ex:License a rdfs:Class ;
+    rdfs:label "License"@en ;
+    rdfs:comment "Documents allowing usage of the robots"@en .
+
+ex:ShipmentDetail a rdfs:Class ;
+    rdfs:label "License"@en ;
+    rdfs:comment "Documents allowing usage of the robots"@en .
+
+ex:DamageDetail a rdfs:Class ;
+    rdfs:label "Damage Detail"@en ;
+    rdfs:comment "Information aboout robots damages"@en .
+
+ex:Customer a rdfs:Class ;
+    rdfs:label "License"@en ;
+    rdfs:comment "Buyer of the robots"@en ;
+    rdfs:subClassOf foaf:Person .
+
+ex:requestLicense a rdf:Property ;
+    rdfs:label "Licesnse Requesting"@en ;
+    rdfs:domain ex:Customer ;
+    rdfs:range ex:LicenseRequest .
+
+ex:requestRobots a rdf:Property ;
+    rdfs:label "New robots requesting"@en ;
+    rdfs:domain ex:Customer ;
+    rdfs:range ex:RobotRequest .
+
+ex:requestShipping a rdf:Property ;
+    rdfs:label "Request robots shipping"@en ;
+    rdfs:domain ex:Customer ;
+    rdfs:range ex:RobotRequest .
+
+ex:DamageType a rdfs:Class ;
+    rdfs:label "DamageType" ;
+    rdfs:comment "Represents types of damage." .
+
+ex:Physical a ex:DamageType ;
+    rdfs:label "Physical" ;
+    rdfs:comment "Damage caused by physical force." .
+
+ex:Moisture a ex:DamageType ;
+    rdfs:label "Moisture" ;
+    rdfs:comment "Damage caused by moisture exposure." .
+
+ex:Temperature a ex:DamageType ;
+    rdfs:label "Temperature" ;
+    rdfs:comment "Damage caused by extreme temperatures." .
+
+ex:Corrosion a ex:DamageType ;
+    rdfs:label "Corrosion" ;
+    rdfs:comment "Damage caused by chemical reactions with the environment." .
+
+ex:hasDamageType a rdf:Property ;
+    rdfs:domain ex:DamageDetail ;
+    rdfs:range ex:DamageType ;
+    rdfs:label "hasDamageType" ;
+    rdfs:comment "Relates a damage detail to its type." .

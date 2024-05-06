@@ -1,0 +1,57 @@
+[
+    {
+        "@id": "http://example.com/damage#010124",
+        "@type": [
+            "http://example.com/damage#DamageDetail"
+        ],
+        "http://purl.org/dc/terms/date": [
+            {
+                "@value": "01.01.24",
+                "@type": "http://www.w3.org/2001/XMLSchema#date"
+            }
+        ],
+        "http://purl.org/dc/terms/description": [
+            {
+                "@value": "Fell down from big height",
+                "@language": "en"
+            }
+        ],
+        "http://example.com/damage#type": [
+            {
+                "@id": "http://example.com/damage#Physical"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.com/damage#030324",
+        "@type": [
+            "http://example.com/damage#DamageDetail"
+        ],
+        "http://purl.org/dc/terms/date": [
+            {
+                "@value": "03.03.24",
+                "@type": "http://www.w3.org/2001/XMLSchema#date"
+            }
+        ],
+        "http://purl.org/dc/terms/description": [
+            {
+                "@value": "High temperature in the container",
+                "@language": "en"
+            }
+        ],
+        "http://example.com/damage#type": [
+            {
+                "@id": "http://example.com/damage#Temperature"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.com/damage#DamageDetail"
+    },
+    {
+        "@id": "http://example.com/damage#Physical"
+    },
+    {
+        "@id": "http://example.com/damage#Temperature"
+    }
+]

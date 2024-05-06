@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="example" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="intermediary" target="17" />
+      <module name="intermediary.main" target="17" />
+      <module name="intermediary.test" target="17" />
+      <module name="soap-exampl" target="17" />
+      <module name="soap-exampl.main" target="17" />
+      <module name="soap-exampl.test" target="17" />
+      <module name="soap-example" target="17" />
+      <module name="soap-example.main" target="17" />
+      <module name="soap-example.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

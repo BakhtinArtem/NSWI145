@@ -1,0 +1,12 @@
+<damageDetails>
+    <damageDetail>
+        <date>01.01.24</date>
+        <desc>Fell down from big height</desc>
+        <type>Physical</type>
+    </damageDetail>
+    <damageDetail>
+        <date>03.03.24</date>
+        <desc>High temperature in the container</desc>
+        <type>Temperature</type>
+    </damageDetail>
+</damageDetails>
